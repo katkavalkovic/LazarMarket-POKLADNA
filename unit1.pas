@@ -58,7 +58,7 @@ type
     { public declarations }
   end;
 
-type zoznamtovaru=record
+type zoznamTovaru=record
      kod: integer;
      nazov: string;
      nakupnacena: integer;
@@ -66,12 +66,12 @@ type zoznamtovaru=record
      pocet: integer;
 end;
 
-type zoznampokladnikov=record
+type zoznamPokladnikov=record
      meno: string;
      kod: string;
 end;
 
-type zoznamovocia=record
+type zoznamOvocia=record
      kod: integer;
      nazov: string;
      nakupnacena: integer;
@@ -79,7 +79,7 @@ type zoznamovocia=record
      pocet: integer;
 end;
 
-type zoznamuctenka=record
+type zoznamUctenka=record
      kod: integer;
      nazov: string;
      pocet: integer;
@@ -213,15 +213,22 @@ end;
 
 procedure TForm1.VyhladajBtnClick(Sender: TObject);
 begin
-//co keby teraz vybehlo memo s nazvom tovaru a uz nan nemusim klikat, ved som ho uz vybral
+//co keby teraz vybehlo memo s nazvom tovaru a uz nan nemusim klikat, ved som ho uz vybral <=== presne takto som to mal v plane
 //vypise to aj do Labelu kde je nazov tovaru
 //vyhlada tovar v zozname tovaru a zisti jeho index, zaznamena ho
 //globalna premenna index bude pouzita do VLOZ
-ListBox1.Items.Clear;
-kodtovaru:=strtoint(edit3.text);
-for i:=1 to m do
-    if kodtovaru=tovar[i].kod then
-       ListBox1.Items.Add(tovar[i].nazov);
+   ListBox1.Items.Clear;
+   kodTovaru:=strtoint(Edit3.Text);
+   for i:=1 to m do
+      if kodTovaru = tovar[i].kod then
+         begin
+           Label2.Caption:= tovar[i].nazov;
+           Label2.Visible:= True;
+           itemIndex:= i - 1;
+           //-1 preto, lebo v procedure VlozBtnClick je z nejakeho dovodu: "itemIndex = itemIndex + 1;"
+           //a nechcel som do toho rypat, ale mali by sme to odstranit asi
+         end;
+
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -409,57 +416,44 @@ procedure TForm1.VlozBtnClick(Sender: TObject);  //dve moznosti: vloz ak je to l
 var
 pocet: integer;
 begin
-itemindex:=itemindex+1;
-inc(pocetobjektov);
-//memo2.append('pocet objektov '+inttostr(pocetobjektov));
-pocet:=strtoint(edit2.text);
-Listbox2.Items.Add(inttostr(tovar[itemindex].kod)+'  '+tovar[itemindex].nazov+'         '+inttostr(pocet)+'x'+inttostr(tovar[itemindex].predajnacena)+'€'+'    '+inttostr(pocet*tovar[itemindex].predajnacena)+'€');
-uctenka[pocetobjektov].kod:=tovar[itemindex].kod;
-uctenka[pocetobjektov].nazov:=tovar[itemindex].nazov;
-uctenka[pocetobjektov].cena:=tovar[itemindex].predajnacena;
-uctenka[pocetobjektov].pocet:=pocet;
-//memo2.append(inttostr(uctenka[pocetobjektov].kod)+'  '+uctenka[pocetobjektov].nazov+'         '+inttostr(uctenka[pocetobjektov].pocet)+'x'+inttostr(uctenka[pocetobjektov].cena)+'€'+'    '+inttostr(uctenka[pocetobjektov].pocet*uctenka[pocetobjektov].cena)+'€');
-celkom:=celkom+(uctenka[pocetobjektov].pocet*uctenka[pocetobjektov].cena);
-edit2.clear;
+     pocet:= strtoint( edit2.text );
+     if pocet > 0 then
+        begin
+             itemindex:= itemindex+1;
+             inc( pocetobjektov );
+        //memo2.append('pocet objektov '+inttostr(pocetobjektov));
+             Listbox2.Items.Add( inttostr( tovar[ itemindex ].kod ) + '  ' + tovar[ itemindex ].nazov + '         '+ inttostr( pocet ) + 'x' + inttostr( tovar[ itemindex ].predajnacena ) + '€' + '    ' + inttostr( pocet*tovar[ itemindex ].predajnacena ) + '€' );
+             uctenka[ pocetobjektov ].kod:= tovar[ itemindex ].kod;
+             uctenka[ pocetobjektov ].nazov:= tovar[ itemindex ].nazov;
+             uctenka[ pocetobjektov ].cena:= tovar[ itemindex ].predajnacena;
+             uctenka[ pocetobjektov ].pocet:= pocet;
+        //memo2.append(inttostr(uctenka[pocetobjektov].kod)+'  '+uctenka[pocetobjektov].nazov+'         '+inttostr(uctenka[pocetobjektov].pocet)+'x'+inttostr(uctenka[pocetobjektov].cena)+'€'+'    '+inttostr(uctenka[pocetobjektov].pocet*uctenka[pocetobjektov].cena)+'€');
+             celkom:= celkom + ( uctenka[ pocetobjektov ].pocet*uctenka[ pocetobjektov ].cena );
+             edit2.clear;
+        end;
 end;
 
 procedure TForm1.ListBox1Click(Sender: TObject);
 var i: integer;
 begin
-<<<<<<< HEAD
-if  ListBox1.Count > 0 then
-   begin
-      for i:= 0 to ListBox1.Count-1 do
-          if ListBox1.Selected[ i ] = True then
-             begin
-                  itemIndex:= i;
-                  Break;
-             end;
-          Label2.Caption:= ( ListBox1.Items[ itemIndex ] );
-          Label2.Visible:= True;
-   end;
-=======
 for i:= 0 to ListBox1.Count-1 do
-    if ListBox1.Selected[i]=True then
+    if ListBox1.Selected[ i ] = True then
        begin
-            itemIndex:=i;
-            break;
+            itemIndex:= i;
+            Break;
        end;
-label2.caption:=(ListBox1.Items[itemIndex]);
-label2.visible:=true;
->>>>>>> parent of 9c15d28... vyhladaj podla kodu a maly bug fix vo VlozBtnClick
+Label2.Caption:= (ListBox1.Items[itemIndex]);
+Label2.Visible:= True;
 end;
 
 procedure TForm1.OdhlasitBtnClick(Sender: TObject);
 begin
-SchovajObjekty;
-label1.visible:=true;
-edit1.visible:=true;
-loginbtn.visible:=true;
-edit1.caption:='';
+     SchovajObjekty;
+     Label1.Visible:= True;
+     Edit1.Visible:= True;
+     Loginbtn.Visible:= True;
+     Edit1.Caption:= '';
 end;
-
-
 
 end.
 
