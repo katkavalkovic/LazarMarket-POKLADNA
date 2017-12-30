@@ -416,18 +416,21 @@ procedure TForm1.VlozBtnClick(Sender: TObject);  //dve moznosti: vloz ak je to l
 var
 pocet: integer;
 begin
-     itemindex:= itemindex+1;
-     inc( pocetobjektov );
-//memo2.append('pocet objektov '+inttostr(pocetobjektov));
      pocet:= strtoint( edit2.text );
-     Listbox2.Items.Add( inttostr( tovar[ itemindex ].kod ) + '  ' + tovar[ itemindex ].nazov + '         '+ inttostr( pocet ) + 'x' + inttostr( tovar[ itemindex ].predajnacena ) + '€' + '    ' + inttostr( pocet*tovar[ itemindex ].predajnacena ) + '€' );
-     uctenka[ pocetobjektov ].kod:= tovar[ itemindex ].kod;
-     uctenka[ pocetobjektov ].nazov:= tovar[ itemindex ].nazov;
-     uctenka[ pocetobjektov ].cena:= tovar[ itemindex ].predajnacena;
-     uctenka[ pocetobjektov ].pocet:= pocet;
-//memo2.append(inttostr(uctenka[pocetobjektov].kod)+'  '+uctenka[pocetobjektov].nazov+'         '+inttostr(uctenka[pocetobjektov].pocet)+'x'+inttostr(uctenka[pocetobjektov].cena)+'€'+'    '+inttostr(uctenka[pocetobjektov].pocet*uctenka[pocetobjektov].cena)+'€');
-     celkom:= celkom + ( uctenka[ pocetobjektov ].pocet*uctenka[ pocetobjektov ].cena );
-     edit2.clear;
+     if pocet > 0 then
+        begin
+             itemindex:= itemindex+1;
+             inc( pocetobjektov );
+        //memo2.append('pocet objektov '+inttostr(pocetobjektov));
+             Listbox2.Items.Add( inttostr( tovar[ itemindex ].kod ) + '  ' + tovar[ itemindex ].nazov + '         '+ inttostr( pocet ) + 'x' + inttostr( tovar[ itemindex ].predajnacena ) + '€' + '    ' + inttostr( pocet*tovar[ itemindex ].predajnacena ) + '€' );
+             uctenka[ pocetobjektov ].kod:= tovar[ itemindex ].kod;
+             uctenka[ pocetobjektov ].nazov:= tovar[ itemindex ].nazov;
+             uctenka[ pocetobjektov ].cena:= tovar[ itemindex ].predajnacena;
+             uctenka[ pocetobjektov ].pocet:= pocet;
+        //memo2.append(inttostr(uctenka[pocetobjektov].kod)+'  '+uctenka[pocetobjektov].nazov+'         '+inttostr(uctenka[pocetobjektov].pocet)+'x'+inttostr(uctenka[pocetobjektov].cena)+'€'+'    '+inttostr(uctenka[pocetobjektov].pocet*uctenka[pocetobjektov].cena)+'€');
+             celkom:= celkom + ( uctenka[ pocetobjektov ].pocet*uctenka[ pocetobjektov ].cena );
+             edit2.clear;
+        end;
 end;
 
 procedure TForm1.ListBox1Click(Sender: TObject);
