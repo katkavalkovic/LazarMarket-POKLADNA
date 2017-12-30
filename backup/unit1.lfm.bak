@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 360
-  Height = 497
-  Top = 137
+  Left = 138
+  Height = 473
+  Top = 116
   Width = 756
   Caption = 'Form1'
-  ClientHeight = 497
+  ClientHeight = 473
   ClientWidth = 756
   Color = clMoneyGreen
   OnCreate = FormCreate
@@ -27,14 +27,15 @@ object Form1: TForm1
     OnEditingDone = Edit1EditingDone
     PasswordChar = '*'
     TabOrder = 0
+    Text = '0'
   end
-  object LogInBtn: TButton
+  object Button1: TButton
     Left = 304
     Height = 25
     Top = 192
     Width = 78
     Caption = 'vstúpiť'
-    OnClick = LogInBtnClick
+    OnClick = Button1Click
     TabOrder = 1
   end
   object Edit2: TEdit
@@ -42,18 +43,25 @@ object Form1: TForm1
     Height = 28
     Top = 136
     Width = 81
-    NumbersOnly = True
     TabOrder = 2
-    Text = '0'
   end
   object OvocieBtn: TButton
-    Left = 24
+    Left = 16
     Height = 49
     Top = 72
-    Width = 232
-    Caption = 'Ovocie a zelenina'
+    Width = 112
+    Caption = 'Ovocie'
     OnClick = OvocieBtnClick
     TabOrder = 3
+  end
+  object ZeleninaBtn: TButton
+    Left = 144
+    Height = 49
+    Top = 72
+    Width = 112
+    Caption = 'Zelenina'
+    OnClick = ZeleninaBtnClick
+    TabOrder = 4
   end
   object PecivoBtn: TButton
     Left = 272
@@ -61,7 +69,7 @@ object Form1: TForm1
     Top = 72
     Width = 112
     Caption = 'Pečivo'
-    TabOrder = 4
+    TabOrder = 5
   end
   object OstatneBtn: TButton
     Left = 400
@@ -69,21 +77,21 @@ object Form1: TForm1
     Top = 72
     Width = 120
     Caption = 'Ostatné'
-    TabOrder = 5
+    TabOrder = 6
   end
-  object VyhladajBtn: TButton
+  object Button6: TButton
     Left = 392
     Height = 26
     Top = 29
     Width = 75
     Caption = 'vyhľadaj'
-    OnClick = VyhladajBtnClick
-    TabOrder = 6
+    OnClick = Button6Click
+    TabOrder = 7
   end
   object Image1: TImage
-    Left = 664
+    Left = 632
     Height = 65
-    Top = 16
+    Top = 8
     Width = 73
   end
   object Label2: TLabel
@@ -105,9 +113,13 @@ object Form1: TForm1
     Height = 28
     Top = 29
     Width = 352
+<<<<<<< HEAD
     NumbersOnly = True
     TabOrder = 7
     Text = '0'
+=======
+    TabOrder = 8
+>>>>>>> parent of 9c15d28... vyhladaj podla kodu a maly bug fix vo VlozBtnClick
   end
   object VlozBtn: TButton
     Left = 560
@@ -116,21 +128,21 @@ object Form1: TForm1
     Width = 153
     Caption = 'VLOŽ'
     OnClick = VlozBtnClick
-    TabOrder = 8
+    TabOrder = 9
   end
   object ListBox1: TListBox
     Left = 24
-    Height = 337
+    Height = 321
     Top = 136
     Width = 516
     ItemHeight = 0
     OnClick = ListBox1Click
-    TabOrder = 9
+    TabOrder = 10
   end
   object Label3: TLabel
-    Left = 552
+    Left = 550
     Height = 20
-    Top = 456
+    Top = 442
     Width = 44
     Caption = 'Label3'
     ParentColor = False
@@ -143,14 +155,13 @@ object Form1: TForm1
     Caption = 'Vyhľadať tovar podľa kódu'
     ParentColor = False
   end
-  object PrejstKPlatbeBtn: TButton
+  object Button8: TButton
     Left = 550
-    Height = 48
+    Height = 25
     Top = 400
-    Width = 130
+    Width = 104
     Caption = 'Prejsť k platbe'
-    OnClick = PrejstKPlatbeBtnClick
-    TabOrder = 10
+    TabOrder = 11
   end
   object Label5: TLabel
     Left = 550
@@ -162,55 +173,19 @@ object Form1: TForm1
   end
   object ListBox2: TListBox
     Left = 560
-    Height = 168
+    Height = 144
     Top = 216
-    Width = 176
+    Width = 156
     ItemHeight = 0
-    TabOrder = 11
-  end
-  object StornoBtn: TButton
-    Left = 680
-    Height = 49
-    Top = 400
-    Width = 56
-    Caption = 'Storno'
-    OnClick = StornoBtnClick
     TabOrder = 12
   end
-  object Memo1: TMemo
-    Left = 24
-    Height = 305
-    Top = 40
-    Width = 704
-    Lines.Strings = (
-      'Memo1'
-    )
-    TabOrder = 13
-  end
-  object ZaplatitBtn: TButton
-    Left = 274
-    Height = 39
-    Top = 392
-    Width = 152
-    Caption = 'Zaplatiť'
-    OnClick = ZaplatitBtnClick
-    TabOrder = 14
-  end
-  object OdhlasitBtn: TButton
-    Left = 576
+  object StornoBtn: TButton
+    Left = 664
     Height = 25
-    Top = 16
+    Top = 400
     Width = 75
-    Caption = 'Odhlásiť sa'
-    OnClick = OdhlasitBtnClick
-    TabOrder = 15
-  end
-  object Label6: TLabel
-    Left = 320
-    Height = 20
-    Top = 10
-    Width = 44
-    Caption = 'Label6'
-    ParentColor = False
+    Caption = 'Storno'
+    OnClick = StornoBtnClick
+    TabOrder = 13
   end
 end
